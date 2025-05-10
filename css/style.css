@@ -1,16 +1,402 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/*----*/
+/*Barra de navegacion*/
+.navegador {
+    margin: 0;
+    padding: 0;
+    background-color: #f31212;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+}
 
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 25px;
+    height: 60px;
+}
+
+.nav-links li {
+    margin-right: 25px;
+}
+
+.nav-links li:last-child {
+    margin-right: 0;
+}
+
+.nav-links li.logo {
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li.logo img {
+    height: 40px;
+    display: block;
+}
+
+.nav-links a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    display: block;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 4px;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+    background-color: #eb4b4b;
+}
+
+.nav-links li.active a {
+    background-color: #2980b9;
+    color: #ffffff;
+    pointer-events: none;
+}
+/*----*/
+
+/*----*/
+/* Style for the header container */
+header {
+    position: relative; /* Needed for absolute positioning of children */
+    width: 100%;
+    height: 100vh; /* Makes the header take up the full viewport height */
+    overflow: hidden; /* Hides any part of the video that overflows */
+    display: flex; /* Use flexbox to easily center the content */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    text-align: center; /* Center text within the content block */
+    color: white; /* Default text color for content over video */
+}
+
+/* Container for the video */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Ensures the container itself doesn't show overflow */
+    z-index: -1; /* Puts the video container behind other content */
+}
+
+/* Style for the video element itself */
+.video-background video {
+    min-width: 100%; /* Ensure video covers the container width */
+    min-height: 100%; /* Ensure video covers the container height */
+    width: auto; /* Allow video dimensions to exceed container if necessary */
+    height: auto;
+    position: absolute;
+    top: 50%; /* Center video horizontally */
+    left: 50%; /* Center video vertically */
+    transform: translate(-50%, -50%); /* Adjust for perfect centering */
+    object-fit: cover; /* Crop video to cover the container without stretching */
+}
+
+/* Optional: Overlay to improve text readability */
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay (adjust alpha for opacity) */
+    z-index: 0; /* Puts the overlay above the video but below the content */
+}
+
+/* Style for your content container to ensure it's above the video/overlay */
+.banner {
+    position: relative; /* Needed for z-index to work correctly against the overlay */
+    z-index: 1; /* Ensures this content is above the overlay and video */
+    padding: 20px; /* Add some padding around the content */
+    max-width: 800px; /* Limit the maximum width of the content text block */
+    width: 100%; /* Allow it to be responsive */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Style the content text for readability */
+.content-text h1 {
+    font-size: 2.8rem; /* Adjust size as needed */
+    margin-bottom: 20px;
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional shadow for better readability */
+}
+
+.content-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Style for the buttons (assuming btn-1 class exists) */
+.btn-1 {
+    display: inline-block;
+    background-color: #3498db; /* Example button color */
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 10px; /* Space between buttons */
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-1:hover {
+    background-color: #2980b9; /* Darker color on hover */
+}
+
+/* Style for the welcome message */
+.content-text p:last-child { /* Target the last paragraph, which is the welcome message when logged in */
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+/* Basic responsiveness for smaller screens */
+@media (max-width: 768px) {
+    header {
+        height: 70vh; /* Reduce header height on smaller screens */
+    }
+
+    .content-text h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .content-text p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .btn-1 {
+        padding: 10px 20px;
+        margin: 10px 5px; /* Adjust margins if buttons stack */
+    }
+}
+header {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.banner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+/* Estilo para el contenedor del texto y botones (el cuadrado semi-transparente y difuminado) */
+.content-text {
+    color: white;
+    /* Fondo semi-transparente (negro con 60% de opacidad) */
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px 40px;
+    border-radius: 8px;
+    max-width: 700px;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    /* Añade el efecto difuminado (blur) detrás del elemento */
+    backdrop-filter: blur(8px); /* Ajusta los 'px' para cambiar la intensidad del blur */
+    -webkit-backdrop-filter: blur(8px); /* Prefijo para compatibilidad con navegadores Webkit */
+}
+
+.content-text h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.content-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.content-text .btn-1 {
+    display: inline-block;
+    background-color: #ee0909;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.content-text .btn-1:hover {
+    background-color: #2980b9;
+}
+
+.content-text p:last-child {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    text-shadow: 1px 1px 3px rgba(94, 92, 92, 0.5);
+}
+
+@media (max-width: 768px) {
+    header {
+        height: 70vh;
+    }
+
+    .content-text {
+        padding: 20px 25px;
+        max-width: 90%;
+    }
+
+    .content-text h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .content-text p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .content-text .btn-1 {
+        padding: 10px 20px;
+        margin: 10px 5px;
+    }
+}
+
+.content-text {
+    color: rgb(250, 250, 250);
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px 40px;
+    border-radius: 8px;
+    max-width: 700px;
+    width: 90%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.content-text h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.content-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.content-text .btn-1 {
+    display: inline-block;
+    background-color: #ff0000;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.content-text .btn-1:hover {
+    background-color: #f13e3e;
+}
+
+.content-text p:last-child {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    header {
+        height: 70vh;
+    }
+
+    .content-text {
+        padding: 20px 25px;
+        max-width: 90%;
+    }
+
+    .content-text h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .content-text p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .content-text .btn-1 {
+        padding: 10px 20px;
+        margin: 10px 5px;
+    }
+}
+/*----*/
 
 /* Estilos globales */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
     text-decoration: none;
     list-style: none;
     font-family: "Inter", sans-serif;
 }
+
 
 /* Contenedor principal */
 .container {
@@ -19,6 +405,8 @@
     max-width: 1200px;
     margin: 0 auto;
 }
+
+
 
 /* Botón */
 .btn-1 {
@@ -36,61 +424,106 @@
     background-color: #f75454;
 }
 
-/* Imágenes */
-img {
-    width: 100%;
-}
 
-/* Encabezado o Header */
-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f92724;
-    padding: 1rem;
-}
 
-.header-header, .header-content {
-    width: 100%;
+/*Linea*/
+.Line{
+    margin: 0 auto;
+    margin-bottom: 80px;
+    padding: 0;
+    width: 100px;
+    border: solid 1px red;
+
+    
+}
+/*----*/
+/*Slogan*/
+.slogan {
+    margin: 80px auto;
+    padding: 80px 20px;
     max-width: 1200px;
+    width: 100%;
+    box-sizing: border-box;
+    background-image: url('../images/tipos-vehiculos.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    min-height: 450px;
 }
 
-.content-text h1 {
-    color: #ffffff;
+.slogan .img-text {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+    color: #333;
 }
 
-.content-text p {
-    color: #ffffff;
+.slogan .img-text h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 20px;
+    line-height: 1.3;
 }
 
-/* Barra de navegación */
-.nav-links {
-    display: flex;
-    align-items: center;
-    background-color: #f92724;
-    padding: 1rem;
+.slogan .img-text .text-slogan {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 0;
 }
 
-nav ul {
-    display: flex;
-    gap: 20px; 
-    padding: 10px 15px;
+.slogan .img-text .highlight {
+    font-weight: bold;
+    color: #e74c3c;
 }
 
-nav ul li a {
-    font-size: 17px;
-    font-weight: 500;
-    padding: 1rem;
-    color: #ffffff;
-    text-decoration: none;
-}
+@media (max-width: 992px) {
+     .slogan {
+         padding: 60px 15px;
+         min-height: 400px;
+     }
 
-nav ul li a:hover {
-    color: #f5f5f5;
-}
+     .slogan .img-text {
+         padding: 20px;
+         max-width: 90%;
+         text-align: center;
+     }
+
+      .slogan .img-text h2 {
+          font-size: 1.6rem;
+          margin-bottom: 15px;
+      }
+
+      .slogan .img-text .text-slogan {
+          font-size: 1rem;
+      }
+ }
+
+ @media (max-width: 576px) {
+      .slogan {
+          padding: 40px 10px;
+          min-height: 350px;
+      }
+      .slogan .img-text {
+          padding: 15px;
+      }
+      .slogan .img-text h2 {
+          font-size: 1.4rem;
+      }
+      .slogan .img-text .text-slogan {
+           font-size: 0.95rem;
+      }
+ }
+/*----*/
 
 /* Contenido centrado */
 .header-content {
@@ -125,58 +558,46 @@ p {
 .header-content .btn-1 {
     margin: 10px;
 }
-
-/* Sección slogan */
-.slogan {
-    position: relative;
-    text-align: center;
-}
-
-.slogan img {
-    width: 100%;
-    height: auto;
-}
-
-.slogan .img-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 24px;
-    background-color: rgba(0, 0, 0, 0.5); 
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.slogan .img-text span {
-    font-weight: bold;
-    color: #f92724;
-}
-
 /* Servicios */
-.servicios {
-    padding: 40px 0;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
+
+/*Contenedor de servicios*/
+.content-servevice{
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+/*Titulo de servicios main*/
+.Titulo-servicios{
+    margin-bottom: -20px;
     text-align: center;
+    font-size: 50px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    
+}
+
+.servicios {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }
 
 .service {
-    flex: 1 1 180px;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     background-color: #ffffff;
     margin: 10px;
+    text-align: center;
 }
 
 .service img {
     width: 80px;
     height: auto;
-    margin-top: 10px;
+    padding: 0;
+    margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 .service h3 {
@@ -189,12 +610,15 @@ p {
     color: #525254;
     font-size: 16px;
     margin-top: 10px;
+    width: 20ch;               /* Aproximadamente 20 caracteres */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Portafolio */
 .portafolio {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
 }
@@ -204,23 +628,71 @@ p {
 }
 
 /* Footer */
-footer .content-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 30px 10px;
-    background-color: #f92724;
-    color: white;
+
+footer {
+    width: 100%;
+    /* Añade un margen superior si quieres separarlo del contenido anterior */
+    /* margin-top: 50px; */
 }
 
-footer .foot {
+.footer-top {
+    background-color: #ecf0f1;
+    padding: 20px 15px;
     text-align: center;
-    flex: 1;
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
-footer .iconos {
+.footer-top p {
+    margin: 5px 0;
+}
+
+.footer-bottom {
+    background-color: #ff0000;
+    padding: 25px 15px;
+    color: white;
+    text-align: center;
     display: flex;
-    gap: 10px;
     justify-content: center;
+    align-items: center;
+}
+
+.footer-bottom .social-icons {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 20px;
+}
+
+.footer-bottom .social-icon-link {
+     color: white;
+     font-size: 1.8rem;
+     transition: color 0.3s ease;
+     text-decoration: none;
+}
+
+.footer-bottom .social-icon-link:hover {
+     color: #e93a3a;
+}
+
+@media (max-width: 576px) {
+    .footer-top {
+        padding: 15px 10px;
+        font-size: 0.85rem;
+    }
+
+    .footer-bottom {
+        padding: 20px 10px;
+    }
+
+    .footer-bottom .social-icons {
+         gap: 15px;
+    }
+
+    .footer-bottom .social-icon-link {
+         font-size: 1.5rem;
+    }
 }
 
 

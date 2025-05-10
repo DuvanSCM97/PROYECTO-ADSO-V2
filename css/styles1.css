@@ -1,14 +1,6 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f73232; 
-    color: white;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+/*body*/
+
+
 
 /* Contenedor del login */
 .login-box {
@@ -91,4 +83,54 @@ input {
 /* Hover en el botón */
 .btn-login:hover {
     background-color: darkred;
+}
+
+.service-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.service {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.service:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.service img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+
+.forgot-password {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #ecf5ff;
+    padding: 12px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-password a {
+    color: #2980b9;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+.forgot-password a:hover {
+    color: #1c5d99;
+    text-decoration: underline;
 }

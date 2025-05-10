@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <link rel="stylesheet" href="../css/styleR.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registro de Usuario</h2>
+        <form action="../php/register.php" method="POST">
+            <label for="ID_Usuario">Cedula:</label>
+            <input type="text" name="ID_Usuario" required>
+
+            <label for="TIPDOC">Tipo de documento:</label>
+            <select name="TIPDOC" id="TIPDOC" required>
+                <option value="">Seleccione...</option>
+                <option value="CC">Cédula de ciudadanía</option>
+                <option value="CE">Cédula de extranjería</option>
+                <option value="TI">Tarjeta de identidad</option>
+                <option value="PAS">Pasaporte</option>
+            </select>
+
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" name="nombre" required>
+
+            <label for="Telusr">Telefono:</label>
+            <input type="text" name="Telusr" required>
+
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" name="correo" required>
+
+            <label for="TIPLIC">Categoría de licencia:</label>
+            <select name="TIPLIC" id="TIPLIC" required>
+                <option value="">Seleccione...</option>
+                <optgroup label="Licencias particulares">
+                    <option value="A1">A1 - Motos hasta 125 c.c.</option>
+                    <option value="A2">A2 - Motos de más de 125 c.c.</option>
+                    <option value="B1">B1 - Vehículos particulares</option>
+                    <option value="B2">B2 - Camiones rígidos particulares</option>
+                    <option value="B3">B3 - Vehículos articulados particulares</option>
+                </optgroup>
+                <optgroup label="Licencias públicas">
+                    <option value="C1">C1 - Vehículos de servicio público</option>
+                    <option value="C2">C2 - Camiones rígidos públicos</option>
+                    <option value="C3">C3 - Vehículos articulados públicos</option>
+                </optgroup>
+            </select>
+
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" name="contrasena" required>
+
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+</body>
+</html>

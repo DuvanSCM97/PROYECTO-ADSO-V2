@@ -28,31 +28,47 @@
             $normas = $_POST['normas'] ?? '';
             $formacion = $_POST['formacion'] ?? '';
             $detalle_accidente = $_POST['detalle_accidente'] ?? 'No proporcionado';
-            $sanciones = $_POST['sanciones'] ?? '';
+            $sanciones = $_POST['sanciones'] ?? ''; // El valor será "Sí" o "No" del radio button
             $estres = $_POST['estres'] ?? 'No proporcionado';
             $paciente = $_POST['paciente'] ?? '';
             $ira = $_POST['ira'] ?? 'No proporcionado';
-            $sustancias = $_POST['sustancias'] ?? '';
+            $sustancias = $_POST['sustancias'] ?? ''; // El valor será "Sí" o "No" del radio button
             $descanso = $_POST['descanso'] ?? '';
             $emergencia = $_POST['emergencia'] ?? 'No proporcionado';
 
-            $es_apto = true;
+            $es_apto = true; // Asumimos que es apto inicialmente
 
-            if ($experiencia == 'No' || $licencia == 'No' || $normas == 'No' || $formacion == 'No' || $sanciones == 'No' || $sustancias == 'No' || $descanso == 'No') {
-                $es_apto = false;
+            // Lógica para determinar si NO es apto
+            // Si ALGUNA de estas condiciones es VERDADERA, entonces NO es apto.
+            if (
+                $experiencia == 'No' ||   // No tiene experiencia
+                $licencia == 'No' ||      // No tiene licencia vigente
+                $normas == 'No' ||        // No conoce las normas
+                $formacion == 'No' ||     // No ha recibido formación
+                $sanciones == 'No' ||     // No está familiarizado con sanciones (si la pregunta era si CONOCE las sanciones) - SI la pregunta era "¿Ha tenido sanciones?", la lógica debería ser $sanciones == 'Sí'
+                $sustancias == 'Sí' ||    // Consume sustancias (respuesta "Sí" a la pregunta de si consume)
+                $descanso == 'No' ||      // No descansa suficiente
+                $accidente == 'Sí'        // Tuvo un accidente (si tener *cualquier* accidente previo descalifica)
+            ) {
+                $es_apto = false; // Si alguna de las condiciones anteriores se cumple, NO es apto.
             }
 
-            if ($accidente == 'Sí') {
-                 // $es_apto = false;
-            }
+            // Puedes refinar la lógica si "accidente == 'Sí'" no siempre descalifica,
+            // o si quieres evaluar otros factores como "paciente == 'No'".
+            // Por ejemplo:
+            // if ($paciente == 'No') {
+            //     $es_apto = false;
+            // }
 
 
+            // --- Mostrar Resultado ---
             if ($es_apto) {
                 echo '<p class="apt-message">La persona parece ser Apta para adquirir un vehículo según este formulario.</p>';
             } else {
                 echo '<p class="not-apt-message">La persona NO parece ser Apta para adquirir un vehículo según este formulario.</p>';
             }
 
+            // --- Mostrar un resumen de las respuestas ---
             echo '<div class="answers-summary">';
             echo '<h3>Resumen de Respuestas:</h3>';
             echo '<p><strong>Experiencia previa:</strong> ' . htmlspecialchars($experiencia) . '</p>';
@@ -61,7 +77,8 @@
             echo '<p><strong>Conoce normas:</strong> ' . htmlspecialchars($normas) . '</p>';
             echo '<p><strong>Formación seguridad vial:</strong> ' . htmlspecialchars($formacion) . '</p>';
             echo '<p><strong>Detalle accidente:</strong> ' . nl2br(htmlspecialchars($detalle_accidente)) . '</p>';
-            echo '<p><strong>A tenido sanciones de tansito o judiciales:</strong> ' . htmlspecialchars($sanciones) . '</p>';
+            // Ajusta el texto de la pregunta según lo que envías en el formulario
+            echo '<p><strong>Familiarizado/Ha tenido sanciones de transito o judiciales:</strong> ' . htmlspecialchars($sanciones) . '</p>';
             echo '<p><strong>Manejo estrés:</strong> ' . nl2br(htmlspecialchars($estres)) . '</p>';
             echo '<p><strong>Paciente/Tolerante:</strong> ' . htmlspecialchars($paciente) . '</p>';
             echo '<p><strong>Episodios de ira:</strong> ' . nl2br(htmlspecialchars($ira)) . '</p>';
@@ -71,10 +88,11 @@
             echo '</div>';
 
         } else {
+            // Mensaje si alguien intenta acceder directamente a procesarFormulario.php sin enviar el formulario por POST
             echo '<p style="text-align: center; color: blue;">Este archivo procesa un formulario. Por favor, regresa al formulario para completarlo.</p>';
         }
         ?>
-         <p style="text-align: center; margin-top: 20px;"><a href="contacto.php">Contacta a un asesor</a></p>
+        <p style="text-align: center; margin-top: 20px;"><a href="../html/contacto.php">Contacta a un asesor</a></p>
 
     </div>
 </body>
